@@ -1,0 +1,51 @@
+.container {
+  max-width: 700px;
+  margin: 40px auto 0;
+}
+
+.sliderCount {
+  color: #f1f1f1;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.slider {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.arrow {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  border: 1px solid #f1f1f1;
+  background: none;
+  padding: 4px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.arrow img {
+  width: 50%;
+}
+
+.picture {
+  width: 80%;
+  position: relative;
+}
+
+.picture img {
+  width: 100%;
+  object-fit: cover;
+}
+
+.description {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: #f1f1f1;
+  padding: 8px;
+}

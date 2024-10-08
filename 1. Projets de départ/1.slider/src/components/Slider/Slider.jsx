@@ -6,39 +6,38 @@ import rightArrow from '../../assets/right-arrow.svg'
 
 export default function Slider() {
 
-  const [showSlide, setShowSlide] = useState(sliderData[0]);
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      setCurrentIndex(prevIndex => (prevIndex + 1) % sliderData.length);
+    }, 2000);
+
+    return () => {
+      clearInterval(intervalId);
+    }
+  }, [])
 
   const leftSlide = () => {
-    const prevSlide = sliderData[showSlide.id - 2];
-
-    if(showSlide.id === 1) {
-      setShowSlide(sliderData[sliderData.length - 1]);
-    } else {
-      setShowSlide(prevSlide);
-    }
+    const prevSlide = currentIndex - 1;
+    (currentIndex === 0) ? setCurrentIndex(sliderData.length - 1) : setCurrentIndex(prevSlide);
   }
 
   const rightSlide = () => {
-    const nextSlide = sliderData[showSlide.id];
-
-    if(showSlide.id < sliderData.length) {
-      setShowSlide(nextSlide);
-    }
-    else if (showSlide.id === sliderData.length) {
-      setShowSlide(sliderData[0]);
-    }
+    const nextSlide = currentIndex + 1;
+    currentIndex === sliderData.length - 1 ? setCurrentIndex(0) : setCurrentIndex(nextSlide);
   }
 
   return (
     <div className='container'>
-      <p className='sliderCount'>{showSlide.id} / 5</p>
+      <p className='sliderCount'>{currentIndex + 1} / {sliderData.length}</p>
       <div className='slider'>
         <button onClick={leftSlide} className='arrow'>
           <img src={leftArrow} alt="left arrow" />
         </button>
         <div className="picture">
-          <img src={`../../../public/images/img-${showSlide.id}.jpg`} alt={showSlide.description} />
-          <span className='description'>{showSlide.description}</span>
+          <img src={`../../../public/images/img-${sliderData[currentIndex].id}.jpg`} alt={sliderData[currentIndex].description} />
+          <span className='description'>{sliderData[currentIndex].description}</span>
         </div>
         <button onClick={rightSlide} className='arrow'>
           <img src={rightArrow} alt="right arrow" />

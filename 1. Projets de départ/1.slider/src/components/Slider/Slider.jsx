@@ -30,17 +30,17 @@ export default function Slider() {
 
   return (
     <div className='container'>
-      <p className='sliderCount'>{currentIndex + 1} / {sliderData.length}</p>
+      <p className='index-info'>{currentIndex + 1} / {sliderData.length}</p>
       <div className='slider'>
-        <button onClick={leftSlide} className='arrow'>
-          <img src={leftArrow} alt="left arrow" />
+        <button onClick={leftSlide} className='navigation-button'>
+          <img src={leftArrow} alt="previous image" />
         </button>
         <div className="picture">
-          <img src={`../../../public/images/img-${sliderData[currentIndex].id}.jpg`} alt={sliderData[currentIndex].description} />
-          <span className='description'>{sliderData[currentIndex].description}</span>
+          <img src={`images/img-${sliderData[currentIndex].id}.jpg`} alt={sliderData[currentIndex].description} />
+          <span className='image-info'>{sliderData[currentIndex].description}</span>
         </div>
-        <button onClick={rightSlide} className='arrow'>
-          <img src={rightArrow} alt="right arrow" />
+        <button onClick={rightSlide} className='navigation-button'>
+          <img src={rightArrow} alt="next image" />
         </button>
       </div>
     </div>

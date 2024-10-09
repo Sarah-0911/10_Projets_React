@@ -9,40 +9,42 @@ export default function Slider() {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
-    const intervalId = setInterval(() => {
-      setCurrentIndex(prevIndex => (prevIndex + 1) % sliderData.length);
+    const intervalID = setInterval(() => {
+      setCurrentIndex(prevIndex => prevIndex + 1 % sliderData.length);
     }, 2000);
 
     return () => {
-      clearInterval(intervalId);
+      clearInterval(intervalID);
     }
   }, [])
 
-  const leftSlide = () => {
-    const prevSlide = currentIndex - 1;
-    (currentIndex === 0) ? setCurrentIndex(sliderData.length - 1) : setCurrentIndex(prevSlide);
-  }
 
-  const rightSlide = () => {
-    const nextSlide = currentIndex + 1;
-    currentIndex === sliderData.length - 1 ? setCurrentIndex(0) : setCurrentIndex(nextSlide);
+  const toggleSlide = (direction) => {
+    if(direction === -1) {
+      setCurrentIndex(currentIndex === 0 ? sliderData.length - 1 : currentIndex - 1);
+    }
+    else if (direction === 1) {
+      setCurrentIndex(currentIndex === sliderData.length - 1 ? 0 : currentIndex + 1);
+    }
   }
 
   return (
     <div className='container'>
       <p className='index-info'>{currentIndex + 1} / {sliderData.length}</p>
       <div className='slider'>
-        <button onClick={leftSlide} className='navigation-button'>
+        <button onClick={() => toggleSlide(-1)} className='navigation-button'>
           <img src={leftArrow} alt="previous image" />
         </button>
         <div className="picture">
           <img src={`images/img-${sliderData[currentIndex].id}.jpg`} alt={sliderData[currentIndex].description} />
           <span className='image-info'>{sliderData[currentIndex].description}</span>
         </div>
-        <button onClick={rightSlide} className='navigation-button'>
+        <button onClick={() => toggleSlide(1)} className='navigation-button'>
           <img src={rightArrow} alt="next image" />
         </button>
       </div>
     </div>
   )
 }
+
+// Voir le corrigé de l'exo pour méthode/logique différente

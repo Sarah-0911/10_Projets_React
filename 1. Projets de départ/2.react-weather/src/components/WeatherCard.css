@@ -49,10 +49,10 @@
   background-color: inherit;
   visibility: hidden;
   opacity: 0;
+  z-index: 10;
   transition:
     visibility .4s ease-out,
     opacity .4s ease-out;
-  z-index: 10;
 }
 
 .loader-container.active {
@@ -61,5 +61,5 @@
 }
 
 .error-information {
-  margin-bottom: 20px;
+  padding: 20px 0;
 }

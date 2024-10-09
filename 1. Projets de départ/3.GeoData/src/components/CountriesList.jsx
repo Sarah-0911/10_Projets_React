@@ -11,23 +11,32 @@ export default function CardsList() {
       const response = await fetch("https://restcountries.com/v3.1/region/europe");
       const data = await response.json();
 
-      const sorted = data.sort((a, b) => a.name.common.localeCompare(b.name.common));
-      console.log(sorted);
+      const sortedCountries = data.sort((a, b) => a.name.common.localeCompare(b.name.common));
 
-      sorted.forEach(country => {
-          console.log(country.name.common);
-
+      const countriesData = sortedCountries.map(country => {
+          return {
+            name: country.name.common,
+            flag: country.flags.svg,
+            languages: Object.values(country.languages).toString(),
+            capital: country.capital[0],
+            population: country.population
+          }
       });
 
+      // console.log(countriesData);
+      setCountries(countriesData);
     }
 
     fetchCountriesData()
-  }, [])
+  }, []);
 
 
   return (
-    <div>
-      <Country />
-    </div>
+    <ul className="grid grid-cols-4 gap-6">
+      {countries && countries.map((country, index) => (
+        <Country key={index} countryData={country} />
+        )
+      )}
+    </ul>
   )
 }

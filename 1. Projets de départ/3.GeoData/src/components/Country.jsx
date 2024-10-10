@@ -1,7 +1,10 @@
-export default function Country({ countryData }) {
+export default function Country({ countryData, openModal }) {
 
   return (
-    <li className=" relative max-w-[270px] max-h-[180px] cursor-pointer transition-transform duration-300 hover:-translate-y-1">
+    <li
+    className=" relative max-w-[270px] max-h-[180px] cursor-pointer transition-transform duration-300 hover:-translate-y-1"
+    onClick={openModal}
+    >
       <img
       className="rounded w-full h-full object-cover"
       src={countryData.flag} alt="flag" />

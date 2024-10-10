@@ -1,9 +1,23 @@
 import { useState, useEffect } from "react"
 import Country from "./Country";
+import ModalResult from "./ModalResult";
+import { createPortal } from "react-dom";
 
 export default function CardsList() {
 
   const [countries, setCountries] = useState(null);
+  const [showModal, setShowModal] = useState(false);
+  const [selectedCountry, setSelectedCountry] = useState(null);
+
+  const openModal = (country) => {
+    setShowModal(true);
+    setSelectedCountry(country);
+  }
+
+  const closeModal = () => {
+    setShowModal(false);
+    setSelectedCountry(null);
+  }
 
   useEffect(() => {
 
@@ -17,7 +31,7 @@ export default function CardsList() {
           return {
             name: country.name.common,
             flag: country.flags.svg,
-            languages: Object.values(country.languages).toString(),
+            languages: Object.values(country.languages).join(', '),
             capital: country.capital[0],
             population: country.population
           }
@@ -32,11 +46,14 @@ export default function CardsList() {
 
 
   return (
+    <>
     <ul className="grid grid-cols-4 gap-6">
       {countries && countries.map((country, index) => (
-        <Country key={index} countryData={country} />
+        <Country key={index} countryData={country} openModal={() => openModal(country)} />
         )
       )}
     </ul>
+    {showModal && createPortal(<ModalResult closeModal={closeModal} countryData={selectedCountry} />, document.body)}
+    </>
   )
 }

@@ -22,12 +22,16 @@ export default function CardsList() {
   useEffect(() => {
 
     const fetchCountriesData = async() => {
-      const response = await fetch("https://restcountries.com/v3.1/region/europe");
-      const data = await response.json();
 
-      const sortedCountries = data.sort((a, b) => a.name.common.localeCompare(b.name.common));
+      try {
+        const response = await fetch("https://restcountries.com/v3.1/region/europe");
 
-      const countriesData = sortedCountries.map(country => {
+        if(!response.ok) throw new Error();
+
+        const data = await response.json();
+        const sortedCountries = data.sort((a, b) => a.name.common.localeCompare(b.name.common));
+
+        const countriesData = sortedCountries.map(country => {
           return {
             name: country.name.common,
             flag: country.flags.svg,
@@ -37,8 +41,11 @@ export default function CardsList() {
           }
       });
 
-      // console.log(countriesData);
       setCountries(countriesData);
+
+      } catch (error) {
+        console.log(error);
+      }
     }
 
     fetchCountriesData()
@@ -47,13 +54,13 @@ export default function CardsList() {
 
   return (
     <>
-    <ul className="grid grid-cols-4 gap-6">
+    <ul className="grid min-[450px]:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 auto-rows-[200px]">
       {countries && countries.map((country, index) => (
-        <Country key={index} countryData={country} openModal={() => openModal(country)} />
+        <Country key={index} country={country} openModal={() => openModal(country)} />
         )
       )}
     </ul>
-    {showModal && createPortal(<ModalResult closeModal={closeModal} countryData={selectedCountry} />, document.body)}
+    {showModal && createPortal(<ModalResult closeModal={closeModal} country={selectedCountry} />, document.body)}
     </>
   )
 }

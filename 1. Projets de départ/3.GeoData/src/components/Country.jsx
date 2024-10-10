@@ -1,4 +1,4 @@
-export default function Country({ countryData, openModal }) {
+export default function Country({ country, openModal }) {
 
   return (
     <li
@@ -7,10 +7,10 @@ export default function Country({ countryData, openModal }) {
     >
       <img
       className="rounded w-full h-full object-cover"
-      src={countryData.flag} alt="flag" />
-      <p className="absolute top-0 left-0 p-2 text-sm md:text-base bg-slate-50 drop-shadow-[2px_2px_1px_rgba(0,0,0,0.5)] rounded">
-        {countryData.name}
-      </p>
+      src={country.flag} alt="flag" />
+      <h2 className="absolute top-0 left-0 p-2 text-sm md:text-base bg-slate-50 drop-shadow-[2px_2px_1px_rgba(0,0,0,0.5)] rounded">
+        {country.name}
+      </h2>
     </li>
   )
 }

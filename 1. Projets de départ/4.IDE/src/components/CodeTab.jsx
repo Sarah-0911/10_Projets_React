@@ -1,4 +1,10 @@
-export default function CodeTab() {
+import { useSelector } from "react-redux";
+
+export default function CodeTab({ tabs }) {
+
+  console.log(tabs);
+
+
   return (
     <textarea
     spellCheck="false"

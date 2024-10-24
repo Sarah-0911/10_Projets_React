@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 export default function Tabs() {
 
   const tabs = useSelector(state =>  state.tabs);
-  console.log(tabs);
+  // console.log(tabs);
 
   return (
     <div className="flex grow">
@@ -14,7 +14,7 @@ export default function Tabs() {
         <button>JS</button>
       </div>
       <div className="grow relative">
-        <CodeTab />
+        <CodeTab tabs={tabs} />
       </div>
     </div>
   )

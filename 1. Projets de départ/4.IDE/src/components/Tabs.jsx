@@ -9,6 +9,8 @@ export default function Tabs() {
   const tabs = useSelector(state =>  state.tabs);
   const [tabIndex, setTabIndex] = useState(tabs[0].id);
 
+  const previewData = useSelector(state =>  state.preview);
+
   return (
     <div className="flex grow">
       <div className="flex flex-col shrink-0 w-[175px] text-slate-50 border-r border-slate-200">
@@ -23,7 +25,7 @@ export default function Tabs() {
       </div>
       <div className="grow relative">
         <CodeTab id={tabIndex} code={tabs.find(tab => tab.id === tabIndex).code} />
-        <Preview />
+        {previewData.preview && <Preview />}
       </div>
     </div>
   )

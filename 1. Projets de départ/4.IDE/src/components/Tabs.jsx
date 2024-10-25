@@ -2,6 +2,7 @@ import { useSelector } from "react-redux";
 import { useState } from "react";
 import CodeTab from "./CodeTab";
 import ButtonTab from "./ButtonTab";
+import Preview from "./Preview.jsx";
 
 export default function Tabs() {
 
@@ -22,6 +23,7 @@ export default function Tabs() {
       </div>
       <div className="grow relative">
         <CodeTab id={tabIndex} code={tabs.find(tab => tab.id === tabIndex).code} />
+        <Preview />
       </div>
     </div>
   )

@@ -1,6 +1,7 @@
 import Tabs from "./components/Tabs";
 
 function App() {
+
   return (
     <div className="bg-zinc-900 min-h-screen flex flex-col">
       <div className="px-4 py-4 border-b flex justify-between items-center">

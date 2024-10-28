@@ -1,7 +1,7 @@
 import UpdateTimeButton from "./components/UpdateTimeButton"
 import ToggleButton from "./components/ToggleButton"
 import { useSelector } from "react-redux"
-import getFormatedTime from "./utils/getFormatedTime.js";
+import getFormatedTime from "./utils/getFormatedTime.js"
 
 function App() {
 

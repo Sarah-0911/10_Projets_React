@@ -44,23 +44,40 @@ export const chronoSlice = createSlice({
       }
     },
     tick: (state) => {
-      state.displayedValue.value --;
-      state.isPlaying = true;
+      if (state.session.runningValue > 0) {
+        state.session.runningValue --;
+        state.displayedValue.value = state.session.runningValue;
+        state.displayedValue.heading = "Work";
+      } else if (state.pause.runningValue > 0) {
+        state.pause.runningValue --;
+        state.displayedValue.value = state.pause.runningValue;
+        state.displayedValue.heading = "Pause";
+      } else {
+        state.cycles ++;
+        state.session.runningValue = state.session.value - 1;
+        state.displayedValue.value = state.session.value - 1;
+        state.displayedValue.heading = "Work";
+        state.pause.runningValue = state.pause.value;
+      }
     },
     resetChrono: (state) => {
-      state.displayedValue.value = 1500;
       if (state.intervalID) clearInterval(state.intervalID);
       state.intervalID = undefined;
       state.isPlaying = false;
+      state.session.runningValue = state.session.value;
+      state.pause.runningValue = state.pause.value;
+      state.displayedValue.value = state.session.runningValue;
+      state.displayedValue.heading = "Work";
+      state.cycles = 0;
     },
     setIntervalID: (state, action) => {
+      state.isPlaying = true;
       state.intervalID = action.payload;
     }
   }
 })
 
-export const startChrono = () => (dispatch, getState) => {
-  console.log(getState());
+export const startChrono = (action) => (dispatch, getState) => {
 
   if (getState().chrono.intervalID) return;
 
@@ -74,3 +91,7 @@ export const startChrono = () => (dispatch, getState) => {
 
 export const { updateChronoValues, tick, resetChrono, setIntervalID } = chronoSlice.actions;
 export default chronoSlice.reducer;
+
+// Ici, startChrono est un créateur d'action qui retourne une fonction (thunk)
+// au lieu d'un objet d'action classique. Cette fonction peut déclencher plusieurs
+// dispatchs et accéder à getState grâce au middleware redux-thunk.

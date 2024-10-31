@@ -1,15 +1,23 @@
+import { useSelector } from "react-redux"
+
 import Color from "../components/Color"
 import ColorRange from "../components/ColorRange"
-import ColorSelect from "../components/ColorSelect"
+import SelectColor from "../components/SelectColor"
 import ModalButton from "../components/ModalButton"
 import UpdateColorButton from "../components/UpdateColorButton"
 
+
 export default function LeftContainer() {
+
+  const gradientData = useSelector(state => state.gradient)
+  console.log(gradientData);
+  
+
   return (
-    <div className="w-[50%] text-slate-100 p-4">
+    <div className="w-[50%] text-slate-100">
 
         <div className="text-center mb-6">
-          <h1 className="text-xl">GradientGenerator</h1>
+          <h1 className="text-xl font-semibold">Gradient Generator</h1>
           <p>Bring style to your apps</p>
         </div>
 
@@ -27,7 +35,7 @@ export default function LeftContainer() {
 
         <div className="mb-4">
           <p className="mb-1">Pick and change a Color's position</p>
-          <ColorSelect />
+          <SelectColor />
         </div>
 
         <div className="mb-4">

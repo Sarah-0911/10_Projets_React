@@ -1,11 +1,11 @@
 import LeftContainer from "./layouts/LeftContainer"
-import Visualization from "./layouts/Visualization/Visualization"
+import Gradient from "./components/Gradient"
 
 function App() {
   return (
-    <main className=" flex max-w-[600px] mx-auto mt-8 border border-gray-500">
+    <main className="relative flex max-w-2xl mx-auto mt-8 p-4 border border-slate-400">
       <LeftContainer />
-      <Visualization />
+      <Gradient />
     </main>
   )
 }

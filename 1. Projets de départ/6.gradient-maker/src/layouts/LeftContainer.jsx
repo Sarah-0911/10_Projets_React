@@ -1,17 +1,17 @@
 import { useSelector } from "react-redux"
 
-import Color from "../components/Color"
-import ColorRange from "../components/ColorRange"
-import SelectColor from "../components/SelectColor"
-import ModalButton from "../components/ModalButton"
+import ColorInput from "../components/inputs/ColorInput"
+import ColorRange from "../components/inputs/ColorRange"
+import AngleRange from "../components/inputs/AngleRange"
+import SelectColor from "../components/inputs/SelectColor"
+
 import UpdateColorButton from "../components/UpdateColorButton"
+import ModalButton from "../components/ModalButton"
 
 
 export default function LeftContainer() {
 
   const gradientData = useSelector(state => state.gradient)
-  console.log(gradientData);
-  
 
   return (
     <div className="w-[50%] text-slate-100">
@@ -24,8 +24,9 @@ export default function LeftContainer() {
         <div className="mb-4">
           <p className="mb-1">Colors, min 2, max 5.</p>
           <div className="flex gap-2">
-            <Color/>
-            <Color/>
+            {gradientData.colors.map(color => (
+              <ColorInput key={color.id} id={color.id} color={color.color} />
+            ))}
           </div>
           <div className="flex mt-2 gap-1">
             <UpdateColorButton />
@@ -45,7 +46,7 @@ export default function LeftContainer() {
 
         <div className="mb-4">
           <p className="mb-1">Gradient's global angle</p>
-          <ColorRange />
+          <AngleRange />
         </div>
 
         <ModalButton />

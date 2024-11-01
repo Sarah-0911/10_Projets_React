@@ -25,7 +25,7 @@ export default function LeftContainer() {
           <p className="mb-1">Colors, min 2, max 5.</p>
           <div className="flex gap-2">
             {gradientData.colors.map(color => (
-              <ColorInput key={color.id} id={color.id} color={color.color} />
+              <ColorInput key={color.id} id={color.id} value={color.value} />
             ))}
           </div>
           <div className="flex mt-2 gap-1">

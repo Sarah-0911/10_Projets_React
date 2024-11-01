@@ -5,13 +5,13 @@ import ColorRange from "../components/inputs/ColorRange"
 import AngleRange from "../components/inputs/AngleRange"
 import SelectColor from "../components/inputs/SelectColor"
 
-import UpdateColorButton from "../components/UpdateColorButton"
+import AddRemoveColor from "../components/AddRemoveColor"
 import ModalButton from "../components/ModalButton"
 
 
 export default function LeftContainer() {
 
-  const gradientData = useSelector(state => state.gradient)
+  const gradientData = useSelector(state => state.gradient);
 
   return (
     <div className="w-[50%] text-slate-100">
@@ -29,8 +29,8 @@ export default function LeftContainer() {
             ))}
           </div>
           <div className="flex mt-2 gap-1">
-            <UpdateColorButton />
-            <UpdateColorButton />
+            <AddRemoveColor sign="-" action="remove" />
+            <AddRemoveColor sign="+" action="add" />
           </div>
         </div>
 

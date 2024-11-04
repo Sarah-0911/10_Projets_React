@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux"
 
 import ColorInput from "../components/inputs/ColorInput"
-import ColorRange from "../components/inputs/ColorRange"
+import ColorRangePosition from "../components/inputs/ColorRangePosition"
 import AngleRange from "../components/inputs/AngleRange"
 import SelectColor from "../components/inputs/SelectColor"
 
@@ -41,7 +41,7 @@ export default function LeftContainer() {
 
         <div className="mb-4">
           <p className="mb-1">Color's position</p>
-          <ColorRange />
+          <ColorRangePosition />
         </div>
 
         <div className="mb-4">

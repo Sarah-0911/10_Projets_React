@@ -28,12 +28,15 @@ export const gradientSlice = createSlice({
     addColor: (state) => {
       if(state.colors.length === 5) return;
 
-      const newId = state.colors[state.colors.length - 1].id + 1
+      const newId = state.colors[state.colors.length - 1].id + 1;
+      const newPosition = (state.colors[state.colors.length - 1].position) +
+      0.1 * (state.colors[state.colors.length - 1].position);
+      // newPosition ajoute 10% de position en plus de la dernière couleur (ex ici: ajoute 10% de 50, donc 5);
 
       state.colors.push({
         id: newId,
         value: "#000000",
-        position: 50,
+        position: newPosition,
       });
     },
     removeColor: (state, action) => {
@@ -42,10 +45,17 @@ export const gradientSlice = createSlice({
     },
     updateAngle: (state, action) => {
       state.angle = action.payload;
-    }
+    },
+    pickColor: (state, action) => {
+      state.pickedColorID = action.payload;
+    },
+    updateColorPosition: (state, action) => {
+      const currentColor = state.colors.find(color => color.id === state.pickedColorID);
+      currentColor.position = action.payload;
+    },
   }
 })
 
-export const { updateColorValue, addColor, removeColor, updateAngle } = gradientSlice.actions;
+export const { updateColorValue, addColor, removeColor, updateAngle, pickColor, updateColorPosition } = gradientSlice.actions;
 
 export default gradientSlice.reducer;

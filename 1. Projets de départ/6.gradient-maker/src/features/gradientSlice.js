@@ -39,10 +39,13 @@ export const gradientSlice = createSlice({
     removeColor: (state, action) => {
       if (state.colors.length === 2) return;
       state.colors.pop();
+    },
+    updateAngle: (state, action) => {
+      state.angle = action.payload;
     }
   }
 })
 
-export const { updateColorValue, addColor, removeColor } = gradientSlice.actions;
+export const { updateColorValue, addColor, removeColor, updateAngle } = gradientSlice.actions;
 
 export default gradientSlice.reducer;

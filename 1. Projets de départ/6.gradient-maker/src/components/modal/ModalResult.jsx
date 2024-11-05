@@ -26,13 +26,13 @@ export default function ModalResult({ closeModal }) {
 
   return (
     <div
-    className="fixed inset-0 flex justify-center items-center bg-slate-700/75 z-10"
+    className="fixed inset-0 flex justify-center items-center bg-slate-800/90 z-10"
     onClick={closeModal}>
       <div
-      className="bg-slate-100 w-[400px] p-6 rounded"
+      className="bg-slate-100 max-w-[460px] p-6 rounded"
       onClick={(e) => e.stopPropagation()}>
         <div className="flex justify-between mb-4">
-          <p className="font-semibold">Here is your code 🎉</p>
+          <p className="font-semibold text-gray-950">Here is your code 🎉</p>
           <div className="flex gap-2 text-slate-100 text-sm">
             <button
             className="py-1 px-4 rounded bg-blue-700 hover:bg-blue-800"
@@ -46,7 +46,7 @@ export default function ModalResult({ closeModal }) {
             </button>
           </div>
         </div>
-        <div className="bg-slate-900 text-slate-100 p-4 rounded-sm text-sm">
+        <div className="bg-slate-900 text-slate-100 p-4 rounded-sm">
           {gradientResult}
         </div>
       </div>

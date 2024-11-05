@@ -50,8 +50,8 @@ export const gradientSlice = createSlice({
       state.pickedColorID = action.payload;
     },
     updateColorPosition: (state, action) => {
-      const currentColor = state.colors.find(color => color.id === state.pickedColorID);
-      currentColor.position = action.payload;
+      const pickedColor = state.colors.find(color => color.id === state.pickedColorID);
+      pickedColor.position = action.payload;
     },
   }
 })

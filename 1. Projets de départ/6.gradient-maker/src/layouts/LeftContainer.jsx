@@ -6,7 +6,7 @@ import AngleRange from "../components/inputs/AngleRange"
 import SelectColor from "../components/inputs/SelectColor"
 
 import AddRemoveColor from "../components/AddRemoveColor"
-import ModalButton from "../components/ModalButton"
+import OpenModalButton from "../components/modal/OpenModalButton"
 
 
 export default function LeftContainer() {
@@ -49,7 +49,7 @@ export default function LeftContainer() {
           <AngleRange />
         </div>
 
-        <ModalButton />
+        <OpenModalButton />
 
       </div>
   )

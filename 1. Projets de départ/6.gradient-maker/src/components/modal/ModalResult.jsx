@@ -15,13 +15,20 @@ export default function ModalResult({ closeModal }) {
   const gradientData = useSelector(state => state.gradient);
   const gradientResult = `background-image: ${getGradientCSSValues(gradientData)}`
 
+  let runningAnimation = false;
   const handleCopy = (e) => {
-    navigator.clipboard.writeText(gradientResult)
-    e.target.textContent = "Copied!";
 
-    setTimeout(() => {
-      e.target.textContent = "Copy";
-    }, 1000)
+    if (!runningAnimation) {
+      runningAnimation = true;
+      e.target.textContent = "Copied!";
+      navigator.clipboard.writeText(gradientResult);
+
+      setTimeout(() => {
+        e.target.textContent = "Copy";
+        runningAnimation = false;
+      }, 500)
+    }
+
   }
 
   return (

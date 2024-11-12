@@ -5,7 +5,7 @@ function App() {
 
   return (
   <>
-    <div className="bg-slate-800 pt-20 px-4 min-h-screen">
+    <div className="bg-slate-800 pt-20 min-h-screen">
 
       <div className="max-w-xl mx-auto">
         {/* Player */}

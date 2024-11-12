@@ -1,24 +1,34 @@
-import { useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { getMusicsData } from "../features/playlistSlice";
-
+import { useEffect } from "react";
 
 export default function Playlist() {
 
+  const playlist = useSelector(state => state.playlist);
   const dispatch = useDispatch();
 
-  const startTrack = () => {
+  useEffect(() => {
     dispatch(getMusicsData())
+  }, [])
+
+
+  const startTrack = () => {
+
   }
 
 
 
   return (
-    <ul>
-      <li
-      className="bg-slate-50 p-2 rounded mb-2 hover:bg-slate-300 cursor-pointer"
-      onClick={startTrack}>
-        <span className="text-slate-950">Titre - Artiste</span>
-      </li>
+    <ul className="mt-4 pb-[300px]">
+      {playlist?.songs?.length && playlist.songs.map(song => (
+        <li
+        key={song.id}
+        className="bg-indigo-100 p-2 font-semibold rounded text-slate-800 mb-2 hover:bg-indigo-200 cursor-pointer"
+        onClick={startTrack}>
+          <span>{song.title} - </span>
+          <span>{song.artist}</span>
+        </li>
+      ))}
     </ul>
   )
 }

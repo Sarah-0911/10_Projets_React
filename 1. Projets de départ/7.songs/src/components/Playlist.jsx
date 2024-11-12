@@ -16,8 +16,6 @@ export default function Playlist() {
 
   }
 
-
-
   return (
     <ul className="mt-4 pb-[300px]">
       {playlist?.songs?.length && playlist.songs.map(song => (

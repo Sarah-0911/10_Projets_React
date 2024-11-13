@@ -18,6 +18,9 @@ export default function AudioPlayer() {
   }, [playlist])
 
   const handleLoadedData = (e) => {
+    console.log(e.target.duration);
+
+
     if (playlist.songs) {
       dispatch(fillDurationVariables({
         currentTime: e.target.currentTime,

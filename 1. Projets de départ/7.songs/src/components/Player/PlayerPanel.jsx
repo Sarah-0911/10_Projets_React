@@ -1,11 +1,11 @@
 import { useSelector } from "react-redux"
 import ChangeTrackBtn from "./ChangeTrackBtn"
 import PlayPauseBtn from "./PlayPauseBtn"
-import ProgressRange from "./ProgressRange"
+import ProgressBar from "./ProgressBar"
 
 export default function PlayerPanel() {
 
-  const playlist = useSelector(state => state.playlist)
+  const playlist = useSelector(state => state.playlist);
   const currentTrack = playlist.songs?.find(song => song.id === playlist.currentTrackID);
 
   return (
@@ -21,11 +21,11 @@ export default function PlayerPanel() {
       </div>
 
       <div className="flex justify-center items-center gap-3">
-        <ChangeTrackBtn />
+        <ChangeTrackBtn direction="prev" />
         <PlayPauseBtn />
-        <ChangeTrackBtn />
+        <ChangeTrackBtn direction="next" />
       </div>
-      <ProgressRange />
+      <ProgressBar />
       </div>
     </div>
   )

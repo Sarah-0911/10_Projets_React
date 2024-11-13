@@ -1,6 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
 import { toggleLecture } from "../../features/playlistSlice";
-import Player from '../Player'
 import play from "../../assets/play-icon.svg"
 import pause from "../../assets/pause-icon.svg"
 

@@ -1,9 +1,13 @@
-import { useSelector } from "react-redux"
+import { useSelector } from "react-redux";
 
 export default function ProgressBar() {
 
+  const progressData = useSelector(state => state.progress);
+  console.log(progressData);
+
   const playlist = useSelector(state => state.playlist);
   const currentTrack = playlist.songs?.find(song => song.id === playlist.currentTrackID);
+
 
   return (
     <div className="my-4">

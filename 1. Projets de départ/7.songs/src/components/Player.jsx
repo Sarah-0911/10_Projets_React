@@ -18,7 +18,6 @@ export default function Player() {
     id="audio-player"
     ref={audioRef}
     src={playlist.songs?.find(song => song.id === playlist.currentTrackID).url}>
-
     </audio>
   )
 }

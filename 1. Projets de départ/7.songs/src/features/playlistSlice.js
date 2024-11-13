@@ -14,11 +14,14 @@ export const playlistSlice = createSlice({
     addBaseSongs: (state, action) => {
       state.songs = action.payload;
       state.currentTrackID = action.payload[0].id;
+    },
+    toggleLecture: (state, action) => {
+      state.play = !state.play;
     }
   }
 })
 
-export const { addBaseSongs } = playlistSlice.actions;
+export const { addBaseSongs, toggleLecture } = playlistSlice.actions;
 
 export default playlistSlice.reducer;
 

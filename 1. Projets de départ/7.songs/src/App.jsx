@@ -1,5 +1,5 @@
 import Player from "./components/Player";
-import PlayerPanel from "./components/Player/PlayerPanel";
+import PlayerPanel from "./components/PlayerPanel/PlayerPanel";
 import Playlist from "./components/Playlist";
 
 function App() {

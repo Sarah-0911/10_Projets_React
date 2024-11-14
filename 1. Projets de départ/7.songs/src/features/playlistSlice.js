@@ -15,13 +15,21 @@ export const playlistSlice = createSlice({
       state.songs = action.payload;
       state.currentTrackID = action.payload[0].id;
     },
-    toggleLecture: (state, action) => {
+    toggleLecture: (state) => {
       state.play = !state.play;
+    },
+    prevSong: (state, action) => {
+      console.log("prev");
+      // state.currentTrackID = action.payload - 1
+    },
+    nextSong: (state, action) => {
+      console.log("next");
+      // state.currentTrackID = ""
     }
   }
 })
 
-export const { addBaseSongs, toggleLecture } = playlistSlice.actions;
+export const { addBaseSongs, toggleLecture, prevSong, nextSong } = playlistSlice.actions;
 
 export default playlistSlice.reducer;
 

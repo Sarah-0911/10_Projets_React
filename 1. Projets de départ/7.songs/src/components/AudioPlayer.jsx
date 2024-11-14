@@ -10,17 +10,14 @@ export default function AudioPlayer() {
   // console.log(audioRef.current);
 
   useEffect(() => {
-    if (playlist.songs && playlist.play) {
+    if (playlist.play) {
       audioRef.current.play();
     } else {
       audioRef.current.pause();
     }
-  }, [playlist])
+  }, [playlist.play, playlist.currentTrackID])
 
   const handleLoadedData = (e) => {
-    console.log(e.target.duration);
-
-
     if (playlist.songs) {
       dispatch(fillDurationVariables({
         currentTime: e.target.currentTime,
@@ -32,7 +29,6 @@ export default function AudioPlayer() {
   const handleTimeUpdate = (e) => {
     dispatch(updateProgress(e.target.currentTime));
   }
-
 
   return (
     <audio

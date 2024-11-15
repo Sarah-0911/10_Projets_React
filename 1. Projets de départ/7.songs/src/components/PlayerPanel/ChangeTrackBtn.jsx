@@ -6,14 +6,12 @@ import { prevSong, nextSong } from "../../features/playlistSlice"
 export default function ChangeTrackBtn({ direction }) {
 
   const playlist = useSelector(state => state.playlist);
-  const currentTrack = playlist.songs?.find(song => song.id === playlist.currentTrackID);
-
   const dispatch = useDispatch();
 
   const changeTrack = () => {
     if(playlist.songs) {
       if (direction === "prev") {
-        dispatch(prevSong(currentTrack));
+        dispatch(prevSong());
       } else if (direction === "next") {
         dispatch(nextSong());
       }

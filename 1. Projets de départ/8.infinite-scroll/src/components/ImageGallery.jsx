@@ -1,7 +1,16 @@
-import useAPICall from "../hooks/useAPICall";
+import { useState } from "react";
+import useUnsplashAPICall from "../hooks/useUnsplashAPICall";
 import spinner from "../assets/spinner.svg"
 
 export default function ImageGallery() {
+
+  const [query, setQuery] = useState("random");
+  const [pageNumber, setPageNumber] = useState(1);
+
+  const { photos, loading, error, maxPages } = useUnsplashAPICall(query, pageNumber);
+  console.log(photos);
+
+
   return (
     <form>
       <label htmlFor="search">Look for images...</label>
@@ -10,8 +19,8 @@ export default function ImageGallery() {
       type="text"
       placeholder="Look for something..."
       id="search"/>
-      <ul className="flex flex-wrap mt-6">
-      </ul>
+      <div className="flex flex-wrap mt-6">
+      </div>
     </form>
   )
 }

@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { nanoid } from "nanoid";
 
 const accessKey = import.meta.env.VITE_UNSPLASH_KEY;
 
@@ -16,7 +15,7 @@ const useUnsplashAPICall = (querySearch, pageNumber) => {
         const response = await fetch(`https://api.unsplash.com/search/photos?page=${pageNumber}&per_page=30&query=${querySearch}&client_id=${accessKey}`);
         if (!response.ok) throw new Error(`Error ${response.status}`);
         const data = await response.json();
-        setPhotos(data.results);
+        setPhotos(prevPhotos => [...prevPhotos, ...data.results]);
         setLoading(false);
         setMaxPages(data.total_pages)
 

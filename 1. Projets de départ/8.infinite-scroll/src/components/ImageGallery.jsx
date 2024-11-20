@@ -1,6 +1,6 @@
 import { useState } from "react";
 import useUnsplashAPICall from "../hooks/useUnsplashAPICall";
-import spinner from "../assets/spinner.svg"
+import spinner from "../assets/spinner.svg";
 
 export default function ImageGallery() {
 
@@ -10,6 +10,24 @@ export default function ImageGallery() {
   const { photos, loading, error, maxPages } = useUnsplashAPICall(query, pageNumber);
   console.log(photos);
 
+  let content;
+  if (loading && !error) {
+    content = <img className="mx-auto" src={spinner} alt="loading spinner" />
+  } else if (photos.length) {
+    content =
+      <div className="grid sm:grid-cols-2 md:grid-cols-3 auto-rows-[200px] gap-4 justify-center">
+        {photos.map(photo => (
+        <img
+        className="w-full h-full object-cover"
+        key={photo.id}
+        src={photo.urls.regular}
+        alt={photo.alt_description} />
+      ))}
+      </div>
+
+  } else if (error) {
+    content = <p>Une erreur est survenue...</p>
+  }
 
   return (
     <form>
@@ -19,7 +37,8 @@ export default function ImageGallery() {
       type="text"
       placeholder="Look for something..."
       id="search"/>
-      <div className="flex flex-wrap mt-6">
+      <div className="my-10">
+        {content}
       </div>
     </form>
   )

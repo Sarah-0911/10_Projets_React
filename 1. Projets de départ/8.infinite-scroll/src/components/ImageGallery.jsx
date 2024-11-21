@@ -11,6 +11,7 @@ export default function ImageGallery() {
   const { photos, loading, error, maxPages } = useUnsplashAPICall(query, pageNumber);
 
   const newGalleryRef = useRef();
+  const searchRef = useRef();
 
   useEffect(() => {
 
@@ -27,8 +28,13 @@ export default function ImageGallery() {
         observer.disconnect();
       }
     }
-
   }, [pageNumber, maxPages])
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setQuery(searchRef.current.value);
+    setPageNumber(1);
+  }
 
   let content;
   if (loading && !error) {
@@ -51,9 +57,10 @@ export default function ImageGallery() {
   }
 
   return (
-    <form>
+    <form onSubmit={handleSubmit}>
       <label htmlFor="search">Look for images...</label>
       <input
+      ref={searchRef}
       className="mt-2 mb-10 w-full py-3 px-2 text-slate-800 border border-slate-400 rounded outline-slate-400"
       type="text"
       placeholder="Look for something..."

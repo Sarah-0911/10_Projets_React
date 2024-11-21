@@ -1,7 +1,12 @@
+import { useDispatch } from "react-redux";
+import { addOne } from "../features/productsCartSlice";
+
 export default function Product({ product }) {
 
+  const dispatch = useDispatch();
+
   const handleCart = () => {
-    console.log("added!");
+    dispatch(addOne({product}));
   }
 
   return (

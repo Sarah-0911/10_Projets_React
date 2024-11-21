@@ -7,6 +7,7 @@ export default function Product({ product }) {
 
   const handleCart = () => {
     dispatch(addOne({product}));
+    // if (product.picked)
   }
 
   return (

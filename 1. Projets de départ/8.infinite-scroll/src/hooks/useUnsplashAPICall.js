@@ -13,7 +13,7 @@ const useUnsplashAPICall = (querySearch, pageNumber) => {
     const fetchData = async() => {
       try {
         const response = await fetch(`https://api.unsplash.com/search/photos?page=${pageNumber}&per_page=30&query=${querySearch}&client_id=${accessKey}`);
-        if (!response.ok) throw new Error(`Error ${response.status}`);
+        if (!response.ok) throw new Error(`Error ${response.status}, something went wrong`);
         const data = await response.json();
         setPhotos(prevPhotos => {
           return pageNumber === 1 ? data.results : [...prevPhotos, ...data.results];
@@ -22,7 +22,10 @@ const useUnsplashAPICall = (querySearch, pageNumber) => {
         setMaxPages(data.total_pages)
 
       } catch (error) {
-        setError(true);
+        setError({
+          state: true,
+          msg: error.message
+        });
         setLoading(false);
       }
     }

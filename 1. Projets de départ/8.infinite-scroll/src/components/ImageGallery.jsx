@@ -7,6 +7,7 @@ export default function ImageGallery() {
 
   const [query, setQuery] = useState("random");
   const [pageNumber, setPageNumber] = useState(1);
+  const [hasMoreImages, setHasMoreImages] = useState(true);
 
   const { photos, loading, error, maxPages } = useUnsplashAPICall(query, pageNumber);
 
@@ -14,12 +15,13 @@ export default function ImageGallery() {
   const searchRef = useRef();
 
   useEffect(() => {
-
     if (newGalleryRef.current) {
       const observer = new IntersectionObserver(entries => {
         // console.log(entries);
         if (entries[0].isIntersecting && pageNumber < maxPages) {
           setPageNumber(prevPageNumber => prevPageNumber + 1);
+        } else if (pageNumber === maxPages) {
+          setHasMoreImages(false);
         }
       })
       observer.observe(newGalleryRef.current);
@@ -51,9 +53,9 @@ export default function ImageGallery() {
       ))}
       </div>
   } else if (error) {
-    content = <p className="text-center">An error is occurred...</p>
-  } else if (!photos.length) {
-    content = <p className="text-center">No photos found...</p>
+    content = <p className="text-center">{error.msg}</p>
+  } else if (!photos.length && !error && !loading) {
+    content = <p className="text-center">No image available for this query...</p>
   }
 
   return (
@@ -71,6 +73,7 @@ export default function ImageGallery() {
       <div
       className="pt-4"
       ref={newGalleryRef}>
+        {!hasMoreImages && <p className="mb-4 text-center">No more images to show for that query.</p>}
       </div>
     </form>
   )

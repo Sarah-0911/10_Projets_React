@@ -10,20 +10,26 @@ export const productsCartSlice = createSlice({
   name:"productsCart",
   initialState,
   reducers: {
-    addOne: (state, action) => {
-      // const productIndex = state.cart.findIndex(product => product.id === action.payload.id);
-      // if (productIndex === -1) {
-      //   state.cart.push({...action.payload, quantity: 1});
-      // } else {
-      //   state.cart[productIndex].quantity++
-      // }
-    },
-    updateTotalQuantity: (state, action) => {
+    updateTotalQuantity: (state) => {
       state.totalQuantity++
+    },
+    updateTotalPrice: (state, action) => {
+      state.totalPrice += action.payload;
+    },
+    addToCart: (state, action) => {
+      const productIndex = state.cart.findIndex(product => product.id === action.payload.id);
+      if (productIndex !== -1) {
+        state.cart[productIndex].quantity++;
+      } else {
+        state.cart.push({...action.payload, quantity: 1});
+      }
+    },
+    removeFromCart: (state, action) => {
+
     },
   }
 })
 
 export default productsCartSlice.reducer;
 
-export const { addOne, updateTotalQuantity } = productsCartSlice.actions;
+export const { addToCart, removeFromCart, updateTotalQuantity, updateTotalPrice } = productsCartSlice.actions;

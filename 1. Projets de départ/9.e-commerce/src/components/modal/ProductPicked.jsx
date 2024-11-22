@@ -1,8 +1,16 @@
+import { useDispatch } from "react-redux";
+import { addToCart, removeFromCart } from "../../features/productsCartSlice";
+
 export default function ProductPicked({ product }) {
 
-  const removeProduct = () => {
-    console.log("removed!");
+  const dispatch = useDispatch();
 
+  const addProduct = () => {
+    dispatch(addToCart(product));
+  } // pour ajouter au dropdown select, à réadapter pour après
+
+  const removeProduct = () => {
+    // dispatch(removeFromCart(product.id));
   }
 
   return (

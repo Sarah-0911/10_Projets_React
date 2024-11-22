@@ -1,12 +1,13 @@
 import { useState, useEffect } from "react"
 import { createPortal } from "react-dom"
 import { useSelector } from "react-redux"
-import shoppingCart from "../assets/shopping-cart.svg"
+import shoppingCart from "../../assets/shopping-cart.svg"
 import ModalResults from "./ModalResults";
 
 function ModalBtn() {
 
   const [showModal, setShowModal] = useState(false);
+  const cartData = useSelector(state => state.productsCart)
 
   useEffect(() => {
     if(showModal) {
@@ -17,7 +18,6 @@ function ModalBtn() {
     }
   })
 
-  const cartData = useSelector(state => state.productsCart)
 
   return (
     <>

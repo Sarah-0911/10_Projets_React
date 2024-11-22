@@ -1,4 +1,4 @@
-import ModalBtn from "./components/ModalBtn";
+import ModalBtn from "./components/modal/ModalBtn";
 import ProductsList from "./components/ProductsList";
 
 function App() {

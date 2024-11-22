@@ -18,7 +18,7 @@ export default function Product({ product }) {
       <img
       className=""
       src={`images/${product.img}.png`}
-      alt="" />
+      alt={product.img} />
       <div className="flex justify-between mt-4 mb-6">
         <p>{product.title}</p>
         <p className="font-bold">{`${product.price}$`}</p>

@@ -1,13 +1,16 @@
 import { useDispatch } from "react-redux";
-import { addOne } from "../features/productsCartSlice";
+import { updateTotalQuantity } from "../features/productsCartSlice";
+import { pickProduct } from "../features/productsSlice";
 
 export default function Product({ product }) {
 
   const dispatch = useDispatch();
 
   const handleCart = () => {
-    dispatch(addOne({product}));
-    // if (product.picked)
+    if (!product.picked) {
+      dispatch(updateTotalQuantity());
+      dispatch(pickProduct(product.id));
+    }
   }
 
   return (
@@ -18,12 +21,12 @@ export default function Product({ product }) {
       alt="" />
       <div className="flex justify-between mt-4 mb-6">
         <p>{product.title}</p>
-        <p className="font-bold">{product.price}</p>
+        <p className="font-bold">{`${product.price}$`}</p>
       </div>
       <button
-      className="text-slate-50 bg-slate-700 w-full rounded py-2"
+      className={`${product.picked ? "bg-green-700" : "bg-slate-700"} text-slate-50 w-full rounded py-2`}
       onClick={handleCart}>
-        Add to cart
+        {product.picked ? "Item picked ✅" : "Add to cart"}
       </button>
     </li>
   )

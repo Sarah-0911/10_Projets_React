@@ -17,11 +17,13 @@ export const productsCartSlice = createSlice({
       // } else {
       //   state.cart[productIndex].quantity++
       // }
+    },
+    updateTotalQuantity: (state, action) => {
       state.totalQuantity++
-    }
+    },
   }
 })
 
 export default productsCartSlice.reducer;
 
-export const { addOne } = productsCartSlice.actions;
+export const { addOne, updateTotalQuantity } = productsCartSlice.actions;

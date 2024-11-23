@@ -1,4 +1,5 @@
 import { useDispatch } from "react-redux";
+import { unpickProduct } from "../../features/productsSlice";
 import { addToCart, removeFromCart } from "../../features/productsCartSlice";
 
 export default function ProductPicked({ product }) {
@@ -10,7 +11,8 @@ export default function ProductPicked({ product }) {
   } // pour ajouter au dropdown select, à réadapter pour après
 
   const removeProduct = () => {
-    // dispatch(removeFromCart(product.id));
+    dispatch(removeFromCart(product));
+    dispatch(unpickProduct(product));
   }
 
   return (
@@ -23,7 +25,7 @@ export default function ProductPicked({ product }) {
         <p className="font-semibold">{product.title}</p>
       </div>
       <div className="flex items-center gap-3">
-        <select className="w-20 p-2 rounded" name="products">
+        <select className="w-20 p-2 rounded cursor-pointer" name="products">
           <option value="1">1</option>
         </select>
         <button

@@ -18,14 +18,20 @@ export const productsCartSlice = createSlice({
     },
     addToCart: (state, action) => {
       const productIndex = state.cart.findIndex(product => product.id === action.payload.id);
-      if (productIndex !== -1) {
-        state.cart[productIndex].quantity++;
-      } else {
+      if (productIndex === -1) {
         state.cart.push({...action.payload, quantity: 1});
+      } else {
+        state.cart[productIndex].quantity++;
       }
     },
     removeFromCart: (state, action) => {
-
+      const productIndex = state.cart.findIndex(product => product.id === action.payload.id);
+      if (productIndex !== -1) {
+        const productToRemove = state.cart[productIndex];
+        state.totalQuantity -= productToRemove.quantity;
+        state.totalPrice -= productToRemove.price * productToRemove.quantity;
+        state.cart = state.cart.filter(product => product.id !== action.payload.id);
+      }
     },
   }
 })

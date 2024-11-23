@@ -6,10 +6,10 @@ export default function ModalResults({ closeModal }) {
   const productsData = useSelector(state => state.products);
   const cartData = useSelector(state => state.productsCart);
   console.log(cartData);
-  
+
 
   const pickedProducts = productsData.list.filter(product => product.picked);
-  // console.log(pickedProducts);
+  console.log(pickedProducts);
 
   return (
     <div
@@ -29,7 +29,7 @@ export default function ModalResults({ closeModal }) {
             <p className="mb-6">Add some items to your cart...</p>
           }
         </ul>
-        <p>Your total: <span className="font-semibold">{`${cartData.totalPrice}$`}</span></p>
+        <p>Your total: <span className="font-semibold">{`${cartData.totalPrice.toFixed(2)}$`}</span></p>
         <button className="block mx-auto mt-6 bg-slate-800 text-slate-100 p-2 rounded">Proceed to checkout</button>
       </div>
     </div>

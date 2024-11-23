@@ -12,20 +12,23 @@ export const productsSlice = createSlice({
       state.list = action.payload;
     },
     pickProduct: (state, action) => {
-      const clonedList = [...state.list]; // Clone la liste
-      const pickedProduct = clonedList.findIndex(product => product.id === action.payload);
-
-      if (pickedProduct !== -1) {
-        clonedList[pickedProduct].picked = true;
+      const productIndex = state.list.findIndex(product => product.id === action.payload);
+      if (productIndex !== -1) {
+        state.list[productIndex].picked = true;
       }
-      state.list = clonedList; // Remplace la liste après modification
+    },
+    unpickProduct: (state, action) => {
+      const productIndex = state.list.findIndex(product => product.id === action.payload.id);
+      if (productIndex !== -1) {
+        state.list[productIndex].picked = false;
+      }
     }
   }
 })
 
 export default productsSlice.reducer;
 
-export const { setProductsBase, pickProduct } = productsSlice.actions;
+export const { setProductsBase, pickProduct, unpickProduct } = productsSlice.actions;
 
 export const getProductsData = (action) => async(dispatch, getState) => {
 

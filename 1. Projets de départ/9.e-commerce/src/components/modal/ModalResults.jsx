@@ -5,8 +5,6 @@ export default function ModalResults({ closeModal }) {
 
   const productsData = useSelector(state => state.products);
   const cartData = useSelector(state => state.cart);
-  console.log(cartData);
-
 
   const pickedProducts = productsData.list.filter(product => product.picked);
   console.log(pickedProducts);

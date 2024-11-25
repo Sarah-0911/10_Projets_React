@@ -1,6 +1,5 @@
 import { useDispatch } from "react-redux";
-import { updateTotalQuantity, updateTotalPrice, addOneToCart } from "../features/cartSlice";
-// import { pickProduct } from "../features/productsSlice";
+import { updateTotalPrice, addOneToCart } from "../features/cartSlice";
 
 export default function Product({ product }) {
 

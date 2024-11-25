@@ -24,13 +24,13 @@ export const productsSlice = createSlice({
       }
     }
   },
-  extraReducers: {
-    ["cart/createCartItem"]: (state, action) => {
+  extraReducers: (builder) => {
+    builder.addCase("cart/createCartItem", (state, action) => {
       // Quand le reducer "cart/createCartItem" est déclenché (quand un produit est ajouté au cart),
       // ça met à jour la propriété "picked" du produit correspondant dans "state.list" à true.
       state.list.find(product => product.id === action.payload.id).picked = true;
       // action.payload correspond au newCartItem passé dans le thunk addOneToCart.
-    }
+    })
   }
 })
 

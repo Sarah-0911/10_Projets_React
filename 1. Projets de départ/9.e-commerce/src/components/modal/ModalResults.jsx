@@ -23,7 +23,9 @@ export default function ModalResults({ closeModal }) {
             <li className="mb-6">Add some items to your cart...</li>
           }
         </ul>
-        <p>Your total: <span className="font-semibold">{`${cartData.totalPrice.toFixed(2)}$`}</span></p>
+        <p>Your total: <span className="font-semibold">
+          {cartData.cartItems.reduce((acc, curr) => acc + curr.price * curr.quantity, 0).toFixed(2)}$</span>
+        </p>
         <button
         className="block mx-auto mt-6 bg-slate-800 text-slate-200 p-2 rounded">
           Proceed to checkout

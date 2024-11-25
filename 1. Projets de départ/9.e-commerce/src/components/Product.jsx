@@ -1,15 +1,9 @@
 import { useDispatch } from "react-redux";
-import { updateTotalPrice, addOneToCart } from "../features/cartSlice";
+import { addOneToCart } from "../features/cartSlice";
 
 export default function Product({ product }) {
 
   const dispatch = useDispatch();
-
-  // const handleCart = () => {
-  //   dispatch(updateTotalQuantity());
-  //   dispatch(updateTotalPrice(product.price));
-  //   dispatch(pickProduct(product.id));
-  // }
 
   return (
     <li className=" bg-slate-300 p-4 rounded">

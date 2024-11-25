@@ -2,34 +2,29 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
     cartItems: [],
-    totalPrice: 0
   }
 
 export const cartSlice = createSlice({
   name:"cart",
   initialState,
   reducers: {
-    updateTotalPrice: (state, action) => {
-      state.totalPrice += action.payload;
-    },
     createCartItem: (state, action) => {
       state.cartItems.push(action.payload);
     },
+    updateItemFromSelect: (state, action) => {
+      const currentProduct = state.cartItems.find(product => product.id === action.payload.id);
+      currentProduct.quantity = Number(action.payload.value);
+    },
     removeFromCart: (state, action) => {
-      const productIndex = state.cartItems.findIndex(product => product.id === action.payload.id);
-      if (productIndex !== -1) {
-        const productToRemove = state.cartItems[productIndex];
-        state.totalQuantity -= productToRemove.quantity;
-        state.totalPrice -= productToRemove.price * productToRemove.quantity;
-        state.cartItems = state.cartItems.filter(product => product.id !== action.payload.id);
-      }
+      const indexItemToRemove = state.cartItems.findIndex(product => product.id === action.payload);
+        state.cartItems.splice(indexItemToRemove, 1);
     },
   }
 })
 
 export default cartSlice.reducer;
 
-export const { createCartItem, removeFromCart, updateTotalPrice } = cartSlice.actions;
+export const { createCartItem, updateItemFromSelect, removeFromCart } = cartSlice.actions;
 
 export const addOneToCart = (action) => (dispatch, getState) => {
   const storeState = getState();

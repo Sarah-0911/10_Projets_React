@@ -18,8 +18,11 @@ export const productsSlice = createSlice({
       // ça met à jour la propriété "picked" du produit correspondant dans "state.list" à true.
       state.list.find(product => product.id === action.payload.id).picked = true;
       // action.payload correspond au newCartItem passé dans le thunk addOneToCart.
+    }),
+    builder.addCase("cart/removeFromCart", (state, action) => {
+      state.list.find(product => product.id === action.payload).picked = false;
     })
-  }
+  },
 })
 
 export default productsSlice.reducer;

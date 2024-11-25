@@ -21,11 +21,11 @@ export default function ProductPicked({ product }) {
         <img
         className="w-14 h-14 rounded object-cover"
         src={`images/${product.img}.png`}
-        alt={product.img} />
+        alt={product.title} />
         <p className="font-semibold">{product.title}</p>
       </div>
       <div className="flex items-center gap-3">
-        <select className="w-20 p-2 rounded cursor-pointer" name="products">
+        <select className="w-20 p-2 rounded cursor-pointer" name="Qty">
           <option value="1">1</option>
         </select>
         <button

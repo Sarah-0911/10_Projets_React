@@ -19,7 +19,7 @@ export const productsCartSlice = createSlice({
     addToCart: (state, action) => {
       const productIndex = state.cart.findIndex(product => product.id === action.payload.id);
       if (productIndex === -1) {
-        state.cart.push({...action.payload, quantity: 1});
+        state.cart.push({...action.payload, quantity: 1}); // quantity initialisé à un quand product ajouté pour la 1ere fois
       } else {
         state.cart[productIndex].quantity++;
       }

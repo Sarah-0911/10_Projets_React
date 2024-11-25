@@ -18,11 +18,11 @@ export default function Product({ product }) {
   return (
     <li className=" bg-slate-300 p-4 rounded">
       <img
-      className=""
+      className="mb-4"
       src={`images/${product.img}.png`}
-      alt={product.img} />
-      <div className="flex justify-between mt-4 mb-6">
-        <p>{product.title}</p>
+      alt={product.title} />
+      <div className="flex justify-between mb-6">
+        <p className="text-slate-800">{product.title}</p>
         <p className="font-bold">{`${product.price}$`}</p>
       </div>
       <button

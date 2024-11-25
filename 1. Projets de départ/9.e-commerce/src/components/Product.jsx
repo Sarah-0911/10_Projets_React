@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux";
-import { addToCart, updateTotalQuantity, updateTotalPrice } from "../features/productsCartSlice";
+import { updateTotalQuantity, updateTotalPrice, addOneToCart } from "../features/cartSlice";
 import { pickProduct } from "../features/productsSlice";
 
 export default function Product({ product }) {
@@ -11,7 +11,7 @@ export default function Product({ product }) {
       dispatch(updateTotalQuantity());
       dispatch(updateTotalPrice(product.price));
       dispatch(pickProduct(product.id));
-      dispatch(addToCart(product))
+      dispatch(addOneToCart())
     }
   }
 

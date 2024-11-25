@@ -7,7 +7,7 @@ import ModalResults from "./ModalResults";
 function ModalBtn() {
 
   const [showModal, setShowModal] = useState(false);
-  const cartData = useSelector(state => state.productsCart)
+  const cartData = useSelector(state => state.cart)
 
   useEffect(() => {
     if(showModal) {

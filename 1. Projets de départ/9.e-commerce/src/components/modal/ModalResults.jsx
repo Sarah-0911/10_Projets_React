@@ -4,7 +4,7 @@ import ProductPicked from "./ProductPicked";
 export default function ModalResults({ closeModal }) {
 
   const productsData = useSelector(state => state.products);
-  const cartData = useSelector(state => state.productsCart);
+  const cartData = useSelector(state => state.cart);
   console.log(cartData);
 
 
@@ -23,7 +23,7 @@ export default function ModalResults({ closeModal }) {
         onClick={closeModal}>
           X
         </button>
-        <ul  className="mt-4">
+        <ul className="mt-4">
           {pickedProducts.length > 0 ? pickedProducts.map(product => (
             <ProductPicked key={product.id} product={product} />)) :
             <p className="mb-6">Add some items to your cart...</p>

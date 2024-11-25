@@ -17,12 +17,6 @@ export const cartSlice = createSlice({
       state.totalPrice += action.payload;
     },
     createCartItem: (state, action) => {
-      // const productIndex = state.cartItems.findIndex(product => product.id === action.payload.id);
-      // if (productIndex === -1) {
-      //   state.cartItems.push({...action.payload, quantity: 1}); // quantity initialisé à 1 quand product ajouté pour la 1ere fois
-      // } else {
-      //   state.cartItems[productIndex].quantity++;
-      // }
       state.cartItems.push(action.payload);
     },
     removeFromCart: (state, action) => {

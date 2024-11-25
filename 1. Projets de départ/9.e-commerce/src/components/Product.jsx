@@ -1,19 +1,16 @@
 import { useDispatch } from "react-redux";
 import { updateTotalQuantity, updateTotalPrice, addOneToCart } from "../features/cartSlice";
-import { pickProduct } from "../features/productsSlice";
+// import { pickProduct } from "../features/productsSlice";
 
 export default function Product({ product }) {
 
   const dispatch = useDispatch();
 
-  const handleCart = () => {
-    if (!product.picked) {
-      dispatch(updateTotalQuantity());
-      dispatch(updateTotalPrice(product.price));
-      dispatch(pickProduct(product.id));
-      dispatch(addOneToCart())
-    }
-  }
+  // const handleCart = () => {
+  //   dispatch(updateTotalQuantity());
+  //   dispatch(updateTotalPrice(product.price));
+  //   dispatch(pickProduct(product.id));
+  // }
 
   return (
     <li className=" bg-slate-300 p-4 rounded">
@@ -27,7 +24,7 @@ export default function Product({ product }) {
       </div>
       <button
       className={`${product.picked ? "bg-green-700" : "bg-slate-700 hover:bg-slate-800"} text-slate-50 w-full rounded py-2`}
-      onClick={handleCart}>
+      onClick={() => dispatch(addOneToCart(product.id))}>
         {product.picked ? "Item picked ✅" : "Add to cart"}
       </button>
     </li>

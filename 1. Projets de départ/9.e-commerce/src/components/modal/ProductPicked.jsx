@@ -1,5 +1,4 @@
 import { useDispatch } from "react-redux";
-import { unpickProduct } from "../../features/productsSlice";
 import { addOneToCart, removeFromCart } from "../../features/cartSlice";
 
 export default function ProductPicked({ product }) {
@@ -12,21 +11,29 @@ export default function ProductPicked({ product }) {
 
   const removeProduct = () => {
     dispatch(removeFromCart(product));
-    dispatch(unpickProduct(product));
   }
 
   return (
     <li className="flex items-center justify-between mb-4">
       <div className="flex items-center gap-2">
         <img
-        className="w-14 h-14 rounded object-cover"
+        className="w-14 h-14 rounded"
         src={`images/${product.img}.png`}
         alt={product.title} />
         <p className="font-semibold">{product.title}</p>
       </div>
       <div className="flex items-center gap-3">
-        <select className="w-20 p-2 rounded cursor-pointer" name="Qty">
+        <select
+        className="w-20 p-2 rounded cursor-pointer"
+        name="Qty"
+        // onChange={e => dispatch()}
+        >
           <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+          <option value="6">6</option>
         </select>
         <button
         className="bg-slate-900 text-slate-200 rounded p-2 text-sm"

@@ -10,18 +10,6 @@ export const productsSlice = createSlice({
   reducers: {
     setProductsBase: (state, action) => {
       state.list = action.payload;
-    },
-    pickProduct: (state, action) => {
-      const productIndex = state.list.findIndex(product => product.id === action.payload);
-      if (productIndex !== -1) {
-        state.list[productIndex].picked = true;
-      }
-    },
-    unpickProduct: (state, action) => {
-      const productIndex = state.list.findIndex(product => product.id === action.payload.id);
-      if (productIndex !== -1) {
-        state.list[productIndex].picked = false;
-      }
     }
   },
   extraReducers: (builder) => {
@@ -36,7 +24,7 @@ export const productsSlice = createSlice({
 
 export default productsSlice.reducer;
 
-export const { setProductsBase, pickProduct, unpickProduct } = productsSlice.actions;
+export const { setProductsBase} = productsSlice.actions;
 
 export const getProductsData = (action) => async(dispatch, getState) => {
 

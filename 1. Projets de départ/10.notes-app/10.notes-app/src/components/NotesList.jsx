@@ -1,18 +1,12 @@
-import { useSelector, useDispatch } from "react-redux"
-import { getNotesData } from "../features/notesSlice"
-import { useEffect } from "react"
-import NoteButton from "./NoteButton";
+import { useSelector } from "react-redux"
+import NoteButton from "./NoteButton"
 
 export default function NotesList() {
 
   const notes = useSelector(state => state.notes)
   // console.log(notes);
 
-  const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(getNotesData());
-  }, [])
 
 
 

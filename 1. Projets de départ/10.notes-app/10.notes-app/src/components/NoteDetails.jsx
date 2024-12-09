@@ -1,12 +1,17 @@
 import { useParams } from "react-router-dom"
+import { useSelector } from "react-redux";
 
 export default function NoteDetails() {
 
-  const params = useParams();
-  console.log(params.id);
+  const { id } = useParams();
+  const notes = useSelector(state => state.notes)
+  const selectedNote = notes.list?.find(note => note.id === id);
+  // console.log(selectedNote);
 
 
   return (
-    <div>NoteDetails {params.id}</div>
+    <div>
+      <p>{selectedNote.title}</p>
+    </div>
   )
 }

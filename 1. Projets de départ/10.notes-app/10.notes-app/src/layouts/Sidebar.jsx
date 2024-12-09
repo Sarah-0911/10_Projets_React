@@ -13,7 +13,7 @@ export default function Sidebar() {
       <Link to={"/"} className="w-8 h-8">
         <img src={folder} alt="Voir toutes les notes" />
       </Link>
-      <Link to={"/editer"} className="w-8 h-8">
+      <Link to={"/note/editer"} className="w-8 h-8">
         <img src={edit} alt="Editer une note" />
       </Link>
     </aside>

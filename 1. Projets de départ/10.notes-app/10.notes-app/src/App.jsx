@@ -3,10 +3,10 @@ import { useEffect } from "react"
 import { useDispatch } from "react-redux"
 import { getNotesData } from "./features/notesSlice"
 import NotesList from "./components/NotesList"
-import NoteItem from "./components/NoteItem"
 import Sidebar from "./layouts/Sidebar"
 import SideNotes from "./layouts/SideNotes"
 import NoteDetails from "./components/NoteDetails"
+import NoteEdit from "./components/NoteEdit"
 
 function App() {
 
@@ -24,6 +24,7 @@ function App() {
         <Routes>
           <Route path="/" element={<NotesList />} />
           <Route path="/note/:id" element={<NoteDetails />} />
+          <Route path="/note/editer" element={<NoteEdit />} />
         </Routes>
       </BrowserRouter>
     </div>

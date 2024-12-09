@@ -1,14 +1,10 @@
 import { useSelector } from "react-redux"
-import NoteButton from "./NoteButton"
+import NoteItem from "./NoteItem"
 
 export default function NotesList() {
 
   const notes = useSelector(state => state.notes)
   // console.log(notes);
-
-
-
-
 
   return (
     <div className="p-10 w-full">
@@ -16,9 +12,8 @@ export default function NotesList() {
       <ul
       className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
         {notes.list?.map(note => {
-        return <NoteButton key={note.id} id={note.id} note={note} />}
+        return <NoteItem key={note.id} id={note.id} note={note} />}
         )}
-
       </ul>
     </div>
   )

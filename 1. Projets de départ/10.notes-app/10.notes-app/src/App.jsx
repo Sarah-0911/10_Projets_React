@@ -1,8 +1,9 @@
+import { useEffect } from "react"
 import { useDispatch } from "react-redux"
+import { getNotesData } from "./features/notesSlice"
 import NotesList from "./components/NotesList"
 import Sidebar from "./layouts/Sidebar"
-import { getNotesData } from "./features/notesSlice"
-import { useEffect } from "react"
+import SideNotes from "./layouts/SideNotes"
 
 function App() {
 
@@ -15,6 +16,7 @@ function App() {
   return (
     <div className="flex bg-slate-800 min-h-screen">
       <Sidebar />
+      <SideNotes />
       <NotesList />
     </div>
   )

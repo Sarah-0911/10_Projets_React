@@ -4,7 +4,6 @@ import NoteItem from "./NoteItem"
 export default function NotesList() {
 
   const notes = useSelector(state => state.notes)
-  // console.log(notes);
 
   return (
     <div className="p-10 w-full">

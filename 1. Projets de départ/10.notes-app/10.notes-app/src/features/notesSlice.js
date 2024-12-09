@@ -27,7 +27,7 @@ export default notesSlice.reducer;
 export const { setNotesBase, addNote, deleteNote, editNote } = notesSlice.actions;
 
 export const getNotesData = (action) => async(dispatch, getState) => {
-    const response = await fetch("data/notes.json");
+    const response = await fetch("/data/notes.json");
     const data = await response.json();
     dispatch(setNotesBase(data.notes));
 }

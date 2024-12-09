@@ -1,5 +1,6 @@
 import folder from "../assets/folder.svg"
 import edit from "../assets/edit.svg"
+import { Link } from "react-router-dom"
 
 export default function Sidebar() {
   return (
@@ -9,12 +10,12 @@ export default function Sidebar() {
         <span>🟡</span>
         <span>🟢</span>
       </div>
-      <a href="#" className="cursor-pointer w-8 h-8">
+      <Link to={"/"} className="w-8 h-8">
         <img src={folder} alt="Voir toutes les notes" />
-      </a>
-      <a href="#" className="cursor-pointer w-8 h-8">
+      </Link>
+      <Link to={"/editer"} className="w-8 h-8">
         <img src={edit} alt="Editer une note" />
-      </a>
+      </Link>
     </aside>
   )
 }

@@ -15,7 +15,7 @@ export const notesSlice = createSlice({
 
     },
     deleteNote: (state, action) => {
-
+      state.list = state.list.filter(note => note.id !== action.payload);
     },
     editNote: (state, action) => {
 

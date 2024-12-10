@@ -1,10 +1,15 @@
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
+import { addNote } from "../features/notesSlice";
+import { nanoid } from "nanoid";
 
 export default function NoteEdit() {
 
   const notes = useSelector(state => state.notes);
+  console.log(notes);
+  const dispatch = useDispatch();
+
   const [title, setTitle] = useState("");
   const [subTitle, setSubTitle] = useState("");
   const [content, setContent] = useState("");
@@ -23,9 +28,10 @@ export default function NoteEdit() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Titre :", title);
-    console.log("Sous-titre :", subTitle);
-    console.log("Contenu :", content);
+    dispatch(addNote({ id:nanoid(8), title, subtitle: subTitle, bodyText: content }));
+    setTitle("");
+    setSubTitle("");
+    setContent("");
   }
 
   return (

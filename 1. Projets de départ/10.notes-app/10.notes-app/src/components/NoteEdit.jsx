@@ -38,15 +38,26 @@ export default function NoteEdit() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (inputStates.title === "") {
-      setShowValidation({title: true})
-    } else {
+    if (Object.values(inputStates).every(value => value)) { // si chque valeur de l'objet retourne qqchose (n'est pas vide)
+      setShowValidation({
+        title: false,
+        subtitle: false,
+        bodyText: false
+      });
       dispatch(addNote({...inputStates, id:nanoid(8)}));
       setInputStates({
         title: "",
         subtitle: "",
         bodyText: ""
       })
+    } else {
+      for (const [key, value] of Object.entries(inputStates)) {
+        if (!value) {
+          setShowValidation(state => ({...state, [key]: true})); // mettre [key] entre crochets permet l'accès à la string correspondante (title par ex)
+        } else {
+          setShowValidation(state => ({...state, [key]: false}));
+        }
+      }
     }
   }
 

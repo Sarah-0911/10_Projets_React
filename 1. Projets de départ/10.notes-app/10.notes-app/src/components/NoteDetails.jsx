@@ -9,12 +9,12 @@ export default function NoteDetails() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  const selectedNote = notes.list?.find(note => note.id === id);
+
   const removeNote = () => {
     if (selectedNote) dispatch(deleteNote(id));
     navigate({pathname: "/"})
   }
-
-  const selectedNote = notes.list?.find(note => note.id === id);
 
   return (
     <div className="flex flex-col">

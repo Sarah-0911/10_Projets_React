@@ -1,13 +1,12 @@
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { addNote } from "../features/notesSlice";
+import { addNote, editNote } from "../features/notesSlice";
 import { nanoid } from "nanoid";
 
 export default function NoteEdit() {
 
   const notes = useSelector(state => state.notes);
-  // console.log(notes);
   const dispatch = useDispatch();
 
   const [inputStates, setInputStates] = useState({
@@ -33,8 +32,14 @@ export default function NoteEdit() {
         subtitle: selectedNote.subtitle || "",
         bodyText: selectedNote.bodyText || ""
       })
+    } else {
+      setInputStates({
+        title: "",
+        subtitle: "",
+        bodyText: ""
+      })
     }
-  }, [id, selectedNote])
+  }, [id])
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -44,12 +49,16 @@ export default function NoteEdit() {
         subtitle: false,
         bodyText: false
       });
-      dispatch(addNote({...inputStates, id:nanoid(8)}));
-      setInputStates({
-        title: "",
-        subtitle: "",
-        bodyText: ""
-      })
+      if (selectedNote && id) {
+        dispatch(editNote({...inputStates, id}));
+      } else {
+        dispatch(addNote({...inputStates, id: nanoid(8)}));
+        setInputStates({
+          title: "",
+          subtitle: "",
+          bodyText: ""
+        })
+      }
     } else {
       for (const [key, value] of Object.entries(inputStates)) {
         if (!value) {
